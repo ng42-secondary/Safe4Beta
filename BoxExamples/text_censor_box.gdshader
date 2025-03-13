@@ -51,4 +51,3 @@ void fragment( )
 	float invisible_margin = float(UV.x > tr2 && UV.x < 1.0-tr2);
 	COLOR.w = invisible_margin * pow(texture(TEXTURE, UV.xy).r, 0.8);
 }
-

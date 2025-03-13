@@ -44,9 +44,9 @@ func draw_censor(detections: String):
 	if BetaData.is_warning:
 		BetaData.update_warning(len(detections_array) == 0)
 	for d in detections_array:
-		if not BetaData.game_data.game_mode:
-			draw_custom_detection(d)
-			continue
+		#if not BetaData.game_data.game_mode:
+			#draw_custom_detection(d)
+			#continue
 		var censor_scn = BetaData.get_censor_scn_for_detection(d)
 		if censor_scn != null:
 			add_censor_box(censor_scn, d)
@@ -71,9 +71,8 @@ func add_censor_box(box_scn, detection):
 	#add_censor_box(censor_scn, detection)
 
 func draw_custom_detection(detection):
-	var censor_scn_id = BetaData.game_data.custom_censors
-	var censor_scn = BetaData.box_scn_types[censor_scn_id]
 	var type_detect = BetaData.censor_type_of_part(detection["class"], detection["score"])
+	var censor_scn = BetaData.get_custom_censor_scn(type_detect)	
 	if type_detect == -1:
 		return
 	var type_mask = 1 << type_detect

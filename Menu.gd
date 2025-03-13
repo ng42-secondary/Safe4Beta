@@ -4,6 +4,12 @@ extends Control
 
 var main_game
 
+static var censor_cateogry_porn = "0"
+static var censor_cateogry_sexy = "1"
+static var censor_cateogry_cute = "2"
+static var censor_cateogry_beta = "3"
+static var censor_cateogry_male = "4"
+static var censor_cateogry_faces = "5"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,14 +48,34 @@ func apply_menu_config():
 	var fps_screen_recorder = BetaData.game_data.fps_screen_recorder
 	$PanelContainer/VBoxContainer/TabContainer/Performance/Vbox/HBoxContainer2/HSliderRecorderFPS.value = fps_screen_recorder
 
+func get_check_button(grid_node, censor_cat):
+	match censor_cat:
+			0: return grid_node.get_node("CheckButtonPorn")
+			1: return grid_node.get_node("CheckButtonSexy")
+			2: return grid_node.get_node("CheckButtonCute")
+			3: return grid_node.get_node("CheckButtonBeta")
+			4: return grid_node.get_node("CheckButtonMale")
+			5: return grid_node.get_node("CheckButtonFaces")
+			
+func get_option_button(grid_node, censor_cat):
+	match censor_cat:
+			0: return grid_node.get_node("OptionButtonPorn")
+			1: return grid_node.get_node("OptionButtonSexy")
+			2: return grid_node.get_node("OptionButtonCute")
+			3: return grid_node.get_node("OptionButtonBeta")
+			4: return grid_node.get_node("OptionButtonMale")
+			5: return grid_node.get_node("OptionButtonFaces")
+
 func setup_custom_censor():
 	var custom_censor = BetaData.game_data.custom_censors
 	$PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/OptionButton.selected = custom_censor
 	var grid_node = get_node("PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer")
 	BetaData.game_data.custom_censor_mask = int(BetaData.game_data.custom_censor_mask)
-	for i in range(int(grid_node.get_child_count()/2.)):
-		var button: CheckButton = grid_node.get_node("CheckButton"+str(i+1))
+	for i in range(int(grid_node.get_child_count()/3.)):
+		var button: CheckButton = get_check_button(grid_node, i)
 		button.set_pressed_no_signal(BetaData.game_data.custom_censor_mask & (1 << i))
+		var option: OptionButton = get_option_button(grid_node, i)
+		option.select(BetaData.game_data.custom_censor_override[str(i)])
 	_on_FileDialog_file_selected(BetaData.game_data.custom_texture)
 
 func _process(_delta):
@@ -124,16 +150,47 @@ func _on_h_slider_comments_cd_value_changed(value):
 	
 
 func _on_option_button_item_selected(index):
-	BetaData.game_data.custom_censors = index
+	BetaData.game_data.custom_censors = index + 1
+	BetaData.update_censor_settings()
 
+func _on_option_button_porn_item_selected(index):
+	BetaData.game_data.custom_censor_override.erase(censor_cateogry_porn)
+	BetaData.game_data.custom_censor_override[censor_cateogry_porn] = index
+	BetaData.update_censor_settings()
+	
+func _on_option_button_sexy_item_selected(index):
+	BetaData.game_data.custom_censor_override.erase(censor_cateogry_sexy)
+	BetaData.game_data.custom_censor_override[censor_cateogry_sexy] = index
+	BetaData.update_censor_settings()
+	
+func _on_option_button_cute_item_selected(index):
+	BetaData.game_data.custom_censor_override.erase(censor_cateogry_cute)
+	BetaData.game_data.custom_censor_override[censor_cateogry_cute] = index
+	BetaData.update_censor_settings()
+	
+func _on_option_button_faces_item_selected(index):
+	BetaData.game_data.custom_censor_override.erase(censor_cateogry_faces)
+	BetaData.game_data.custom_censor_override[censor_cateogry_faces] = index
+	BetaData.update_censor_settings()
+	
+func _on_option_button_beta_item_selected(index):
+	BetaData.game_data.custom_censor_override.erase(censor_cateogry_beta)
+	BetaData.game_data.custom_censor_override[censor_cateogry_beta] = index
+	BetaData.update_censor_settings()
+	
+func _on_option_button_male_item_selected(index):
+	BetaData.game_data.custom_censor_override.erase(censor_cateogry_male)
+	BetaData.game_data.custom_censor_override[censor_cateogry_male] = index
+	BetaData.update_censor_settings()
 
 func _on_check_button_custom_toggled(toggled_on, extra_arg_0):
-	var mask = 1 << extra_arg_0
+	var mask = 1 << (extra_arg_0)
 	var old_mask = BetaData.game_data.custom_censor_mask
 	if toggled_on:
 		BetaData.game_data.custom_censor_mask = old_mask | mask
 	else:
 		BetaData.game_data.custom_censor_mask = old_mask & ~mask
+	BetaData.update_censor_settings()
 
 
 func _on_label_texture_pressed():

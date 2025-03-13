@@ -16,11 +16,17 @@ const full_screen_glitched_scn = preload("res://GameMode/full_screen_glitched.ts
 const TEXT_CENSOR_BOX = preload("res://BoxExamples/text_censor_box.tscn")
 const SUBLIM_MESSAGE_BOX = preload("res://BoxExamples/sublim_message_box.tscn")
 const GLITCHED_BOX = preload("res://BoxExamples/glitched_box.tscn")
+const MOSAIC_BOX = preload("res://BoxExamples/mosaic_box.tscn")
 const CUSTOM_TEXTURE_CENSOR_BOX = preload("res://BoxExamples/custom_texture_censor_box.tscn")
 const BASE_CENSOR_BOX = preload("res://BoxExamples/base_censor_box.tscn")
-var box_scn_types = [BASE_CENSOR_BOX, GLITCHED_BOX, SUBLIM_MESSAGE_BOX,
-	TEXT_CENSOR_BOX, CUSTOM_TEXTURE_CENSOR_BOX,
-]
+var box_scn_types = {
+	"BLACK_BAR": BASE_CENSOR_BOX, 
+	"GLITCHED": GLITCHED_BOX,
+	"MOSAIC": MOSAIC_BOX,
+	"SUBLIMINAL": SUBLIM_MESSAGE_BOX,
+	"TEXT": TEXT_CENSOR_BOX, 
+	"CUSTOM_IMAGE": CUSTOM_TEXTURE_CENSOR_BOX
+}
 var custom_texture: ImageTexture = null
 
 const FULL_SCREEN_TEXT_CREATOR = preload("res://BoxExamples/full_screen_text_creator.tscn")
@@ -86,18 +92,69 @@ var game_data := {
 	cd_comments = 20,
 	custom_censors = 0,
 	custom_censor_mask = int(1),
+	# censor_category: censor_type (0 = inherit from custom_censor)
+	custom_censor_override= {"0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0},
 	custom_texture = "./fox.png",
 	fps_screen_recorder = 30,
 	xp_multiplier = 1.0,
 	#never change old data name to avoid breaking old saves
 }
 
+var censor_lvls = []
+
+func build_game_levels():
+	# porn_fema: 0, sexy_fem: 1, beauty_fem: 2, beta_fem: 3, face_fem: 5
+	var lvl0 = {0: GLITCHED_BOX, 1: SUBLIM_MESSAGE_BOX, 2: SUBLIM_MESSAGE_BOX if randf()<0.2 else null, 3: null, 5: null}
+	const lvl1 = {0: MOSAIC_BOX, 1: GLITCHED_BOX, 2: SUBLIM_MESSAGE_BOX, 3: null, 5: null}
+	const lvl2 = {0: TEXT_CENSOR_BOX, 1: MOSAIC_BOX, 2: GLITCHED_BOX, 3: null, 5: null}
+	const lvl3 = {0: TEXT_CENSOR_BOX, 1: TEXT_CENSOR_BOX, 2: GLITCHED_BOX, 3: null, 5: null}
+	const lvl4 = {0: TEXT_CENSOR_BOX, 1: TEXT_CENSOR_BOX, 2: MOSAIC_BOX, 3: SUBLIM_MESSAGE_BOX, 5: GLITCHED_BOX}
+	const lvl5 = {0: TEXT_CENSOR_BOX, 1: TEXT_CENSOR_BOX, 2: TEXT_CENSOR_BOX, 3: SUBLIM_MESSAGE_BOX, 5: MOSAIC_BOX}
+	censor_lvls = [lvl0, lvl1, lvl2, lvl3, lvl4, lvl5]
+
+var censor_type_settings: Dictionary = {
+	0: null,
+	1: null,
+	2: null,
+	3: null,
+	4: null,
+	5: null
+}
+
+func id_to_scn_type(type_id):
+	match type_id:
+		0: 
+			if(game_data.custom_censors != 0):
+				return id_to_scn_type(game_data.custom_censors)
+			else:
+				return BASE_CENSOR_BOX
+		1: return BASE_CENSOR_BOX
+		2: return GLITCHED_BOX
+		3: return MOSAIC_BOX
+		4: return SUBLIM_MESSAGE_BOX
+		5: return TEXT_CENSOR_BOX
+		6: return CUSTOM_TEXTURE_CENSOR_BOX
+		_: return BASE_CENSOR_BOX
+
+func update_censor_settings():
+	print("censor mask: ", game_data.custom_censor_mask)
+	for i in range(0,6):
+		print("censor bit [", i, "]: ", (game_data.custom_censor_mask >> i) & 1)
+		var enabled = (game_data.custom_censor_mask >> i) & 1 != 0
+		if(enabled):
+			var type_id: int = game_data.custom_censor_override.get(str(i))
+			censor_type_settings[i] = id_to_scn_type(type_id)
+		else: 
+			censor_type_settings[i] = null
+	print("updated censor: ", censor_type_settings)
 
 func _ready():
 	overlay = get_node("/root/Overlay")
 	screen_recorder = get_node("/root/Overlay/ScreenRecorder")
 	var is_existing_save = load_config_json()
 	apply_new_config(is_existing_save)
+	build_game_levels()
+	update_censor_settings()
 
 
 func _exit_tree():
@@ -144,7 +201,8 @@ func censor_type_of_part(body_part : String, score : float):
 	var is_high_face_male = (bp=="FACE_MALE" and not is_low_face_male)
 	var porn_fema = (bp=="ANUS_EXPOSED" or bp=="FEMALE_GENITALIA_EXPOSED" or bp=="FEMALE_BREAST_EXPOSED")
 	var sexy_fem = (bp=="ANUS_COVERED" or bp=="FEMALE_GENITALIA_COVERED" or bp=="BUTTOCKS_EXPOSED")
-	var beauty_fem = (is_low_face_male or bp=="FACE_FEMALE" or bp=="BUTTOCKS_COVERED" or bp == "FEMALE_BREAST_COVERED")
+	var beauty_fem = (bp=="BUTTOCKS_COVERED" or bp == "FEMALE_BREAST_COVERED")
+	var face_fem = (is_low_face_male or bp=="FACE_FEMALE")
 	var beta_fem = (bp=="FEET_EXPOSED" or bp=="FEET_COVERED" or bp=="ARMPITS_EXPOSED" or bp=="BELLY_EXPOSED")
 	var male = (is_high_face_male or bp=="MALE_BREAST_EXPOSED" or bp=="MALE_GENITALIA_EXPOSED")
 	
@@ -153,6 +211,7 @@ func censor_type_of_part(body_part : String, score : float):
 	if beauty_fem: return 2
 	if beta_fem: return 3
 	if male: return 4
+	if face_fem: return 5
 	return -1
 	
 
@@ -180,7 +239,7 @@ func update_score_from_detection(d_class, d_score, d_box):
 	var box_area = d_box[2] * d_box[3]
 	var censor_type = censor_type_of_part(d_class, d_score)
 	var area_coeff = clamp(15.0*box_area/overlay.screen_area, 0.5, 1.5)
-	const type_to_score = {0: 10.0, 1: 6.0, 2: 3.0, 3: 1.5, 4: -4.0, -1: 0.0}
+	const type_to_score = {0: 10.0, 1: 6.0, 2: 3.0, 3: 1.5, 4: -4.0, 5: 2.0,-1: 0.0}
 	var score_diff = area_coeff * type_to_score[censor_type]
 	return score_diff
 
@@ -202,7 +261,7 @@ func trigger_warning():
 
 func trigger_harder_lvl():
 	game_data.score = 1
-	game_data.lvl = min(3, game_data.lvl+1)
+	game_data.lvl = min(5, game_data.lvl+1)
 	make_screen_glitched()
 	await get_tree().create_timer(1).timeout
 	overlay.beta_voices.get_node("lvl"+str(int(game_data.lvl))).play()
@@ -233,17 +292,21 @@ func must_censor_detection(detection):
 		return false
 	return censor_type <= game_data.lvl
 
+func get_custom_censor_scn(detection):
+	var censor_type = censor_type_of_part(detection["class"], detection["score"])
+	var override_type = game_data.custom_censor_override[str(censor_type)]
+	print_debug("censor type " + censor_type + " - override type " + override_type)
+	if override_type > 0:
+		return BetaData.box_scn_types[override_type]
+	else:
+		return BetaData.box_scn_types[game_data.custom_censor]
+
 func get_censor_scn_for_detection(detection):
+	var censor_type = censor_type_of_part(detection["class"], detection["score"])
 	if not game_data.game_mode:
 		# use custom censor settings
-		return TEXT_CENSOR_BOX
-	# porn_fema: 0, sexy_fem: 1, beauty_fem: 2, beta_fem: 3
-	var lvl0 = {0: GLITCHED_BOX, 1: SUBLIM_MESSAGE_BOX, 2: SUBLIM_MESSAGE_BOX if randf()<0.2 else null, 3: null}
-	const lvl1 = {0: TEXT_CENSOR_BOX, 1: GLITCHED_BOX, 2: SUBLIM_MESSAGE_BOX, 3: null}
-	const lvl2 = {0: TEXT_CENSOR_BOX, 1: TEXT_CENSOR_BOX, 2: GLITCHED_BOX, 3: null}
-	const lvl3 = {0: TEXT_CENSOR_BOX, 1: TEXT_CENSOR_BOX, 2: GLITCHED_BOX, 3: SUBLIM_MESSAGE_BOX}
-	var censor_lvls = [lvl0, lvl1, lvl2, lvl3]
-	var censor_type = censor_type_of_part(detection["class"], detection["score"])
+		print("returning ", censor_type_settings.get(censor_type))
+		return censor_type_settings.get(censor_type)
 	if game_data.lvl == -1:
 		return null
 	#if censor_type == 4 or censor_type == -1:

@@ -38,9 +38,10 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 
 [node name="Game" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -157,7 +158,6 @@ size_flags_horizontal = 4
 text = "Start a new game"
 
 [node name="Censor" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -203,17 +203,19 @@ autowrap_mode = 2
 [node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox"]
 layout_mode = 2
 selected = 0
-item_count = 5
+item_count = 6
 popup/item_0/text = "Black Box"
 popup/item_0/id = 0
 popup/item_1/text = "Glitched Box"
 popup/item_1/id = 1
-popup/item_2/text = "Subliminal Messages"
+popup/item_2/text = "Mosaic"
 popup/item_2/id = 2
-popup/item_3/text = "Repeating Text"
+popup/item_3/text = "Subliminal Messages"
 popup/item_3/id = 3
-popup/item_4/text = "Custom Texture"
+popup/item_4/text = "Repeating Text"
 popup/item_4/id = 4
+popup/item_5/text = "Custom Texture"
+popup/item_5/id = 5
 
 [node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox"]
 layout_mode = 2
@@ -222,43 +224,164 @@ horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox"]
 layout_mode = 2
-columns = 2
+columns = 3
 
-[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="LabelPorn" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 text = "Porn (holes)"
 
-[node name="CheckButton1" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="CheckButtonPorn" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 button_pressed = true
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="OptionButtonPorn" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "Inherited"
+popup/item_0/id = 99
+popup/item_1/text = "Black Box"
+popup/item_1/id = 0
+popup/item_2/text = "Glitched Box"
+popup/item_2/id = 1
+popup/item_3/text = "Mosaic"
+popup/item_3/id = 5
+popup/item_4/text = "Subliminal Messages"
+popup/item_4/id = 2
+popup/item_5/text = "Repeating Text"
+popup/item_5/id = 3
+popup/item_6/text = "Custom Texture"
+popup/item_6/id = 4
+
+[node name="LabelSexy" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 text = "Sexy (bikini)"
 
-[node name="CheckButton2" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="CheckButtonSexy" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="OptionButtonSexy" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
-text = "Cute (face, dressed)"
+selected = 0
+item_count = 7
+popup/item_0/text = "Inherited"
+popup/item_0/id = 99
+popup/item_1/text = "Black Box"
+popup/item_1/id = 0
+popup/item_2/text = "Glitched Box"
+popup/item_2/id = 1
+popup/item_3/text = "Mosaic"
+popup/item_3/id = 5
+popup/item_4/text = "Subliminal Messages"
+popup/item_4/id = 2
+popup/item_5/text = "Repeating Text"
+popup/item_5/id = 3
+popup/item_6/text = "Custom Texture"
+popup/item_6/id = 4
 
-[node name="CheckButton3" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="LabelCute" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+layout_mode = 2
+text = "Cute (dressed)"
+
+[node name="CheckButtonCute" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="OptionButtonCute" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "Inherited"
+popup/item_0/id = 99
+popup/item_1/text = "Black Box"
+popup/item_1/id = 0
+popup/item_2/text = "Glitched Box"
+popup/item_2/id = 1
+popup/item_3/text = "Mosaic"
+popup/item_3/id = 5
+popup/item_4/text = "Subliminal Messages"
+popup/item_4/id = 2
+popup/item_5/text = "Repeating Text"
+popup/item_5/id = 3
+popup/item_6/text = "Custom Texture"
+popup/item_6/id = 4
+
+[node name="LabelFaces" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+layout_mode = 2
+text = "Faces"
+
+[node name="CheckButtonFaces" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+layout_mode = 2
+
+[node name="OptionButtonFaces" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "Inherited"
+popup/item_0/id = 99
+popup/item_1/text = "Black Box"
+popup/item_1/id = 0
+popup/item_2/text = "Glitched Box"
+popup/item_2/id = 1
+popup/item_3/text = "Mosaic"
+popup/item_3/id = 5
+popup/item_4/text = "Subliminal Messages"
+popup/item_4/id = 2
+popup/item_5/text = "Repeating Text"
+popup/item_5/id = 3
+popup/item_6/text = "Custom Texture"
+popup/item_6/id = 4
+
+[node name="LabelBeta" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 text = "Beta (armpits, feet)"
 
-[node name="CheckButton4" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="CheckButtonBeta" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 
-[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="OptionButtonBeta" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "Inherited"
+popup/item_0/id = 99
+popup/item_1/text = "Black Box"
+popup/item_1/id = 0
+popup/item_2/text = "Glitched Box"
+popup/item_2/id = 1
+popup/item_3/text = "Mosaic"
+popup/item_3/id = 5
+popup/item_4/text = "Subliminal Messages"
+popup/item_4/id = 2
+popup/item_5/text = "Repeating Text"
+popup/item_5/id = 3
+popup/item_6/text = "Custom Texture"
+popup/item_6/id = 4
+
+[node name="LabelMale" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 text = "Male"
 
-[node name="CheckButton5" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+[node name="CheckButtonMale" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
+
+[node name="OptionButtonMale" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "Inherited"
+popup/item_0/id = 99
+popup/item_1/text = "Black Box"
+popup/item_1/id = 0
+popup/item_2/text = "Glitched Box"
+popup/item_2/id = 1
+popup/item_3/text = "Mosaic"
+popup/item_3/id = 5
+popup/item_4/text = "Subliminal Messages"
+popup/item_4/id = 2
+popup/item_5/text = "Repeating Text"
+popup/item_5/id = 3
+popup/item_6/text = "Custom Texture"
+popup/item_6/id = 4
 
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox"]
 layout_mode = 2
@@ -453,11 +576,18 @@ layout_mode = 2
 [connection signal="pressed" from="PanelContainer/VBoxContainer/TabContainer/Game/Vbox/Button" to="." method="_on_button_restart_pressed"]
 [connection signal="text_changed" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/HBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="item_selected" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButton1" to="." method="_on_check_button_custom_toggled" binds= [0]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButton2" to="." method="_on_check_button_custom_toggled" binds= [1]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButton3" to="." method="_on_check_button_custom_toggled" binds= [2]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButton4" to="." method="_on_check_button_custom_toggled" binds= [3]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButton5" to="." method="_on_check_button_custom_toggled" binds= [4]]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButtonPorn" to="." method="_on_check_button_custom_toggled" binds= [0]]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/OptionButtonPorn" to="." method="_on_option_button_porn_item_selected"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButtonSexy" to="." method="_on_check_button_custom_toggled" binds= [1]]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/OptionButtonSexy" to="." method="_on_option_button_sexy_item_selected"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButtonCute" to="." method="_on_check_button_custom_toggled" binds= [2]]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/OptionButtonCute" to="." method="_on_option_button_cute_item_selected"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButtonFaces" to="." method="_on_check_button_custom_toggled" binds= [5]]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/OptionButtonFaces" to="." method="_on_option_button_faces_item_selected"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButtonBeta" to="." method="_on_check_button_custom_toggled" binds= [3]]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/OptionButtonBeta" to="." method="_on_option_button_beta_item_selected"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButtonMale" to="." method="_on_check_button_custom_toggled" binds= [4]]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/OptionButtonMale" to="." method="_on_option_button_male_item_selected"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/HBoxContainer2/Label" to="." method="_on_label_texture_pressed"]
 [connection signal="value_changed" from="PanelContainer/VBoxContainer/TabContainer/Audio/Vbox/HBoxContainer/HSliderCommentsCD" to="." method="_on_h_slider_comments_cd_value_changed"]
 [connection signal="value_changed" from="PanelContainer/VBoxContainer/TabContainer/Performance/Vbox/HBoxContainer/HSliderDetectionsCD" to="." method="_on_h_slider_detections_cd_value_changed"]

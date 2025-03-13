@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://db2rylfixbulv"]
+
+[ext_resource type="PackedScene" uid="uid://ht77w61hmtbs" path="res://BoxExamples/base_censor_box.tscn" id="1_l43io"]
+[ext_resource type="Script" uid="uid://csn32hmmkbbgh" path="res://BoxExamples/MosaicBox.gd" id="2_l43io"]
+[ext_resource type="Shader" uid="uid://b0cr3h80mhsg6" path="res://BoxExamples/mosaic.gdshader" id="3_jk7si"]
+[ext_resource type="Texture2D" uid="uid://pa1t21f5c02h" path="res://BoxExamples/smooth_border.png" id="4_l005j"]
+
+[sub_resource type="Gradient" id="Gradient_mii4r"]
+offsets = PackedFloat32Array(0.155039, 0.744186)
+colors = PackedColorArray(0.686275, 0, 0, 1, 0.0509804, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4kiuh"]
+gradient = SubResource("Gradient_mii4r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgq64"]
+shader = ExtResource("3_jk7si")
+shader_parameter/back_screen_texture = SubResource("GradientTexture1D_4kiuh")
+shader_parameter/size = 18.0
+
+[node name="MosaicBox" instance=ExtResource("1_l43io")]
+script = ExtResource("2_l43io")
+
+[node name="TextureRect" parent="." index="0"]
+material = SubResource("ShaderMaterial_kgq64")
+offset_right = 396.0
+offset_bottom = 221.0
+texture = ExtResource("4_l005j")
+
+[node name="RichTextLabel" type="Label" parent="TextureRect" index="0"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.5
+offset_right = 28.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "No info"
+
+[node name="RichTextLabel2" type="Label" parent="TextureRect" index="1"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "No info 2"
