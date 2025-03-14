@@ -1,6 +1,8 @@
 extends Node
 
-const DETECTOR_PATH = "./nudenet/output/screen-detect-nude/screen-detect-nude.exe"
+const DETECTOR_PATH = "./nudenet/output/screen-detect-nude/"
+const DETECTOR_WIN = DETECTOR_PATH + "screen-detect-nude.exe"
+const DETECTOR_LINUX = DETECTOR_PATH + "linux/screen-detect-nude"
 
 var server := TCPServer.new()
 var client: StreamPeerTCP = null
@@ -33,7 +35,12 @@ func _process(_delta):
 func restart_detector(time_between_detection):
 	if pid_detector != -1:
 		OS.kill(pid_detector)
-	pid_detector = OS.create_process(DETECTOR_PATH, [time_between_detection, BetaData.overlay.id_screen+1])
+	match OS.get_name():
+		"Windows": 
+			pid_detector = OS.create_process(DETECTOR_WIN, [time_between_detection, BetaData.overlay.id_screen+1])
+		"Linux": 
+			pid_detector = OS.create_process(DETECTOR_LINUX, [time_between_detection, BetaData.overlay.id_screen+1])
+
 	print("Detector now use ", time_between_detection, " sec CD.")
 	
 

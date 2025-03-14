@@ -17,16 +17,58 @@ const TEXT_CENSOR_BOX = preload("res://BoxExamples/text_censor_box.tscn")
 const SUBLIM_MESSAGE_BOX = preload("res://BoxExamples/sublim_message_box.tscn")
 const GLITCHED_BOX = preload("res://BoxExamples/glitched_box.tscn")
 const MOSAIC_BOX = preload("res://BoxExamples/mosaic_box.tscn")
+const ASCII_BOX = preload("res://BoxExamples/ascii_box.tscn")
+const NOISE_CIRCLE = preload("res://BoxExamples/noise_circle.tscn")
+const BLUR_CIRCLE = preload("res://BoxExamples/blur_circle.tscn")
 const CUSTOM_TEXTURE_CENSOR_BOX = preload("res://BoxExamples/custom_texture_censor_box.tscn")
 const BASE_CENSOR_BOX = preload("res://BoxExamples/base_censor_box.tscn")
-var box_scn_types = {
-	"BLACK_BAR": BASE_CENSOR_BOX, 
-	"GLITCHED": GLITCHED_BOX,
-	"MOSAIC": MOSAIC_BOX,
-	"SUBLIMINAL": SUBLIM_MESSAGE_BOX,
-	"TEXT": TEXT_CENSOR_BOX, 
-	"CUSTOM_IMAGE": CUSTOM_TEXTURE_CENSOR_BOX
-}
+const box_scn_types = [
+	{
+		"display_name": "Black Bar",
+		"internal": "BLACK_BAR",
+		"scn": BASE_CENSOR_BOX
+	},
+	{
+		"display_name": "Glitched",
+		"internal": "GLITCHED",
+		"scn": GLITCHED_BOX
+	},
+	{
+		"display_name": "Mosaic",
+		"internal": "MOSAIC",
+		"scn": MOSAIC_BOX
+	},
+	{
+		"display_name": "Blur (Circle)",
+		"internal": "BLUR_CIR",
+		"scn": BLUR_CIRCLE
+	},
+	{
+		"display_name": "Noise (Circle)",
+		"internal": "NOISE_CIR",
+		"scn": NOISE_CIRCLE
+	},
+	{
+		"display_name": "ASCII Text",
+		"internal": "ASCII",
+		"scn": ASCII_BOX
+	},
+	{
+		"display_name": "Subliminal Messages",
+		"internal": "SUBLIMINAL",
+		"scn": SUBLIM_MESSAGE_BOX
+	},
+	{
+		"display_name": "Repeating Text",
+		"internal": "REP_TEXT",
+		"scn": TEXT_CENSOR_BOX
+	},
+	{
+		"display_name": "Custom Image",
+		"internal": "CUSTOM_IMAGE",
+		"scn": CUSTOM_TEXTURE_CENSOR_BOX
+	}
+]
 var custom_texture: ImageTexture = null
 
 const FULL_SCREEN_TEXT_CREATOR = preload("res://BoxExamples/full_screen_text_creator.tscn")
@@ -122,31 +164,24 @@ var censor_type_settings: Dictionary = {
 }
 
 func id_to_scn_type(type_id):
-	match type_id:
-		0: 
-			if(game_data.custom_censors != 0):
-				return id_to_scn_type(game_data.custom_censors)
-			else:
-				return BASE_CENSOR_BOX
-		1: return BASE_CENSOR_BOX
-		2: return GLITCHED_BOX
-		3: return MOSAIC_BOX
-		4: return SUBLIM_MESSAGE_BOX
-		5: return TEXT_CENSOR_BOX
-		6: return CUSTOM_TEXTURE_CENSOR_BOX
-		_: return BASE_CENSOR_BOX
+	if(type_id >= box_scn_types.size()):
+		return BASE_CENSOR_BOX
+	if(type_id == 0 || type_id >= box_scn_types.size()):
+		if(game_data.custom_censors > 0 && type_id < box_scn_types.size()):
+			return id_to_scn_type(game_data.custom_censors)
+		else:
+			return BASE_CENSOR_BOX
+	else:
+		return box_scn_types[type_id - 1].get("scn")
 
 func update_censor_settings():
-	print("censor mask: ", game_data.custom_censor_mask)
 	for i in range(0,6):
-		print("censor bit [", i, "]: ", (game_data.custom_censor_mask >> i) & 1)
 		var enabled = (game_data.custom_censor_mask >> i) & 1 != 0
 		if(enabled):
 			var type_id: int = game_data.custom_censor_override.get(str(i))
 			censor_type_settings[i] = id_to_scn_type(type_id)
 		else: 
 			censor_type_settings[i] = null
-	print("updated censor: ", censor_type_settings)
 
 func _ready():
 	overlay = get_node("/root/Overlay")

@@ -35,4 +35,5 @@ void fragment( )
 	+	texelFetch( back_screen_texture, ivec2( p + quat_y * 3.0 + quat_x * 2.0 ), 0 ).xyz
 	+	texelFetch( back_screen_texture, ivec2( p + quat_y * 3.0 + quat_x * 3.0 ), 0 ).xyz
 	) / 16.0, 1.0 );
+	COLOR.w = pow(texture(TEXTURE, UV).x, 0.6);
 }

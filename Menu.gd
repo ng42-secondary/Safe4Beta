@@ -66,8 +66,16 @@ func get_option_button(grid_node, censor_cat):
 			4: return grid_node.get_node("OptionButtonMale")
 			5: return grid_node.get_node("OptionButtonFaces")
 
+func populate_censor_options(option_button: OptionButton, include_inherited):
+	option_button.clear()
+	if(include_inherited):
+		option_button.add_item("Inherited", 0)
+	for scn_type in BetaData.box_scn_types:
+		option_button.add_item(scn_type.get("display_name"))
+
 func setup_custom_censor():
 	var custom_censor = BetaData.game_data.custom_censors
+	populate_censor_options($PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/OptionButton, false)
 	$PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/OptionButton.selected = custom_censor
 	var grid_node = get_node("PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer")
 	BetaData.game_data.custom_censor_mask = int(BetaData.game_data.custom_censor_mask)
@@ -75,6 +83,7 @@ func setup_custom_censor():
 		var button: CheckButton = get_check_button(grid_node, i)
 		button.set_pressed_no_signal(BetaData.game_data.custom_censor_mask & (1 << i))
 		var option: OptionButton = get_option_button(grid_node, i)
+		populate_censor_options(option, true)
 		option.select(BetaData.game_data.custom_censor_override[str(i)])
 	_on_FileDialog_file_selected(BetaData.game_data.custom_texture)
 
