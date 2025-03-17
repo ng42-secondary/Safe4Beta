@@ -16,13 +16,13 @@ func set_blur_radius(radius: float):
 	
 func adjust_blur_sync():
 	if(blur_dir):
-		blur_adjust += 0.01
+		blur_adjust += 0.05
 		$TextureRect.material.set_shader_parameter("radius", base_blur + blur_adjust)
 		$TextureRect/TextureRectX.material.set_shader_parameter("radius", base_blur - blur_adjust)
 		if(blur_adjust >= 10):
 			blur_dir = false
 	else:
-		blur_adjust -= 0.01
+		blur_adjust -= 0.05
 		$TextureRect.material.set_shader_parameter("radius", base_blur + blur_adjust)
 		$TextureRect/TextureRectX.material.set_shader_parameter("radius", base_blur - blur_adjust)
 		if(blur_adjust <= -10):
@@ -33,7 +33,6 @@ func update_back_screen():
 	if frame_count == fc:
 		return
 	frame_count = fc
-	adjust_blur_sync()
 	var current_screen_texture : ImageTexture = BetaData.screen_recorder.get_screen_texture()
 	$TextureRect.material.set_shader_parameter("back_screen_texture", current_screen_texture)
 	$TextureRect/TextureRectX.material.set_shader_parameter("back_screen_texture", current_screen_texture)

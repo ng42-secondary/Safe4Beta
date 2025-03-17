@@ -20,6 +20,7 @@ const MOSAIC_BOX = preload("res://BoxExamples/mosaic_box.tscn")
 const ASCII_BOX = preload("res://BoxExamples/ascii_box.tscn")
 const NOISE_CIRCLE = preload("res://BoxExamples/noise_circle.tscn")
 const FAST_BLUR = preload("res://BoxExamples/fast_blur/fast_blur.tscn")
+const BLUR_CIR = preload("res://BoxExamples/blur_circle.tscn")
 const CUSTOM_TEXTURE_CENSOR_BOX = preload("res://BoxExamples/custom_texture_censor_box.tscn")
 const BASE_CENSOR_BOX = preload("res://BoxExamples/base_censor_box.tscn")
 const box_scn_types = [
@@ -42,6 +43,11 @@ const box_scn_types = [
 		"display_name": "Blur",
 		"internal": "BLUR",
 		"scn": FAST_BLUR
+	},
+	{
+		"display_name": "Blur (Circle)",
+		"internal": "BLUR_CIR",
+		"scn": BLUR_CIR
 	},
 	{
 		"display_name": "Noise (Circle)",
@@ -132,6 +138,7 @@ var game_data := {
 	cd_detections = 0.1,
 	eco_detections = false,
 	cd_comments = 20,
+	cd_comments_enabled = true,
 	custom_censors = 0,
 	custom_censor_mask = int(1),
 	# censor_category: censor_type (0 = inherit from custom_censor)

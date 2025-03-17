@@ -8,7 +8,8 @@ func _ready():
 func to_higher_lvl():
 	# not used
 	var lvl: int = BetaData.game_data.lvl
-	get_node("lvl"+str(lvl)).play()
+	if BetaData.game_data.cd_comments_enabled:
+		get_node("lvl"+str(lvl)).play()
 
 var type_to_node = {
 	0: "basic",
@@ -27,7 +28,8 @@ func comment_detections(detections_array):
 		var str_node = type_to_node.get(type)
 		if str_node == null:
 			continue
-		get_node(str_node).play()
+		if BetaData.game_data.cd_comments_enabled:
+			get_node(str_node).play()
 		start_cd()
 		return
 

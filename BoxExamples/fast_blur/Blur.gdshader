@@ -11,7 +11,7 @@ uniform vec2 step;
 uniform float radius = 10.000000;
 
 void fragment() {
-	vec2 s = radius / DEFAULT_RADIUS * step / vec2(textureSize(back_screen_texture, 0));
+	vec2 s = radius / DEFAULT_RADIUS * step / vec2(textureSize(TEXTURE, 0));
 	COLOR.rgb =
 		0.011194727 * texture(back_screen_texture, UV - 10.000000000 * s).rgb +
 		0.039368696 * texture(back_screen_texture, UV - 8.415809477 * s).rgb +

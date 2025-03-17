@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mtlcx"]
 shader = ExtResource("3_jci2m")
 shader_parameter/back_screen_texture = ExtResource("4_mtlcx")
-shader_parameter/sigma = 6.0
+shader_parameter/sigma = 8.0
 
 [node name="BlurCircle" instance=ExtResource("1_jci2m")]
 script = ExtResource("2_jci2m")

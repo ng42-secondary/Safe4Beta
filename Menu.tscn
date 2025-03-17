@@ -38,7 +38,7 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 2
 
 [node name="Game" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
 visible = false
@@ -158,6 +158,7 @@ size_flags_horizontal = 4
 text = "Start a new game"
 
 [node name="Censor" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -237,21 +238,9 @@ button_pressed = true
 [node name="OptionButtonPorn" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 selected = 0
-item_count = 7
+item_count = 1
 popup/item_0/text = "Inherited"
-popup/item_0/id = 99
-popup/item_1/text = "Black Box"
-popup/item_1/id = 0
-popup/item_2/text = "Glitched Box"
-popup/item_2/id = 1
-popup/item_3/text = "Mosaic"
-popup/item_3/id = 5
-popup/item_4/text = "Subliminal Messages"
-popup/item_4/id = 2
-popup/item_5/text = "Repeating Text"
-popup/item_5/id = 3
-popup/item_6/text = "Custom Texture"
-popup/item_6/id = 4
+popup/item_0/id = 0
 
 [node name="LabelSexy" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
@@ -263,21 +252,9 @@ layout_mode = 2
 [node name="OptionButtonSexy" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 selected = 0
-item_count = 7
+item_count = 1
 popup/item_0/text = "Inherited"
-popup/item_0/id = 99
-popup/item_1/text = "Black Box"
-popup/item_1/id = 0
-popup/item_2/text = "Glitched Box"
-popup/item_2/id = 1
-popup/item_3/text = "Mosaic"
-popup/item_3/id = 5
-popup/item_4/text = "Subliminal Messages"
-popup/item_4/id = 2
-popup/item_5/text = "Repeating Text"
-popup/item_5/id = 3
-popup/item_6/text = "Custom Texture"
-popup/item_6/id = 4
+popup/item_0/id = 0
 
 [node name="LabelCute" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
@@ -289,21 +266,9 @@ layout_mode = 2
 [node name="OptionButtonCute" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 selected = 0
-item_count = 7
+item_count = 1
 popup/item_0/text = "Inherited"
-popup/item_0/id = 99
-popup/item_1/text = "Black Box"
-popup/item_1/id = 0
-popup/item_2/text = "Glitched Box"
-popup/item_2/id = 1
-popup/item_3/text = "Mosaic"
-popup/item_3/id = 5
-popup/item_4/text = "Subliminal Messages"
-popup/item_4/id = 2
-popup/item_5/text = "Repeating Text"
-popup/item_5/id = 3
-popup/item_6/text = "Custom Texture"
-popup/item_6/id = 4
+popup/item_0/id = 0
 
 [node name="LabelFaces" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
@@ -315,21 +280,9 @@ layout_mode = 2
 [node name="OptionButtonFaces" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 selected = 0
-item_count = 7
+item_count = 1
 popup/item_0/text = "Inherited"
-popup/item_0/id = 99
-popup/item_1/text = "Black Box"
-popup/item_1/id = 0
-popup/item_2/text = "Glitched Box"
-popup/item_2/id = 1
-popup/item_3/text = "Mosaic"
-popup/item_3/id = 5
-popup/item_4/text = "Subliminal Messages"
-popup/item_4/id = 2
-popup/item_5/text = "Repeating Text"
-popup/item_5/id = 3
-popup/item_6/text = "Custom Texture"
-popup/item_6/id = 4
+popup/item_0/id = 0
 
 [node name="LabelBeta" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
@@ -341,21 +294,9 @@ layout_mode = 2
 [node name="OptionButtonBeta" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 selected = 0
-item_count = 7
+item_count = 1
 popup/item_0/text = "Inherited"
-popup/item_0/id = 99
-popup/item_1/text = "Black Box"
-popup/item_1/id = 0
-popup/item_2/text = "Glitched Box"
-popup/item_2/id = 1
-popup/item_3/text = "Mosaic"
-popup/item_3/id = 5
-popup/item_4/text = "Subliminal Messages"
-popup/item_4/id = 2
-popup/item_5/text = "Repeating Text"
-popup/item_5/id = 3
-popup/item_6/text = "Custom Texture"
-popup/item_6/id = 4
+popup/item_0/id = 0
 
 [node name="LabelMale" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
@@ -367,21 +308,9 @@ layout_mode = 2
 [node name="OptionButtonMale" type="OptionButton" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer"]
 layout_mode = 2
 selected = 0
-item_count = 7
+item_count = 1
 popup/item_0/text = "Inherited"
-popup/item_0/id = 99
-popup/item_1/text = "Black Box"
-popup/item_1/id = 0
-popup/item_2/text = "Glitched Box"
-popup/item_2/id = 1
-popup/item_3/text = "Mosaic"
-popup/item_3/id = 5
-popup/item_4/text = "Subliminal Messages"
-popup/item_4/id = 2
-popup/item_5/text = "Repeating Text"
-popup/item_5/id = 3
-popup/item_6/text = "Custom Texture"
-popup/item_6/id = 4
+popup/item_0/id = 0
 
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox"]
 layout_mode = 2
@@ -402,7 +331,6 @@ expand_mode = 5
 stretch_mode = 5
 
 [node name="Audio" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -417,6 +345,17 @@ size_flags_horizontal = 4
 [node name="spacer" type="Control" parent="PanelContainer/VBoxContainer/TabContainer/Audio/Vbox"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+
+[node name="HBoxContainerEnable" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Audio/Vbox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/TabContainer/Audio/Vbox/HBoxContainerEnable"]
+layout_mode = 2
+text = "Enabled"
+
+[node name="CheckButtonEnableSound" type="CheckButton" parent="PanelContainer/VBoxContainer/TabContainer/Audio/Vbox/HBoxContainerEnable"]
+layout_mode = 2
+button_pressed = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Audio/Vbox"]
 layout_mode = 2
@@ -589,6 +528,7 @@ layout_mode = 2
 [connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/CheckButtonMale" to="." method="_on_check_button_custom_toggled" binds= [4]]
 [connection signal="item_selected" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/GridContainer/OptionButtonMale" to="." method="_on_option_button_male_item_selected"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/TabContainer/Censor/ScrollContainer/Vbox/HBoxContainer2/Label" to="." method="_on_label_texture_pressed"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/TabContainer/Audio/Vbox/HBoxContainerEnable/CheckButtonEnableSound" to="." method="_on_check_button_enable_sound_toggled"]
 [connection signal="value_changed" from="PanelContainer/VBoxContainer/TabContainer/Audio/Vbox/HBoxContainer/HSliderCommentsCD" to="." method="_on_h_slider_comments_cd_value_changed"]
 [connection signal="value_changed" from="PanelContainer/VBoxContainer/TabContainer/Performance/Vbox/HBoxContainer/HSliderDetectionsCD" to="." method="_on_h_slider_detections_cd_value_changed"]
 [connection signal="timeout" from="PanelContainer/VBoxContainer/TabContainer/Performance/Vbox/HBoxContainer/HSliderDetectionsCD/Timer" to="." method="_on_timer_cd_duration_timeout"]

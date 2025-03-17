@@ -44,6 +44,8 @@ func apply_menu_config():
 	$PanelContainer/VBoxContainer/TabContainer/Performance/Vbox/CheckBoxEco.button_pressed = eco_detections
 	var cd_comments = BetaData.game_data.cd_comments
 	$PanelContainer/VBoxContainer/TabContainer/Audio/Vbox/HBoxContainer/HSliderCommentsCD.value = cd_comments
+	var cd_comments_enabled = BetaData.game_data.cd_comments_enabled
+	$PanelContainer/VBoxContainer/TabContainer/Audio/Vbox/HBoxContainer/HSliderCommentsCD.value = cd_comments_enabled
 	setup_custom_censor()
 	var fps_screen_recorder = BetaData.game_data.fps_screen_recorder
 	$PanelContainer/VBoxContainer/TabContainer/Performance/Vbox/HBoxContainer2/HSliderRecorderFPS.value = fps_screen_recorder
@@ -244,3 +246,9 @@ func _on_h_slider_recorder_fps_value_changed(value):
 func _on_h_slider_xp_mult_value_changed(value):
 	BetaData.game_data.xp_multiplier = value
 	$PanelContainer/VBoxContainer/TabContainer/Game/Vbox/HBoxContainer4/Label4.text = str(value)
+
+
+func _on_check_button_enable_sound_toggled(toggled_on: bool) -> void:
+	BetaData.game_data.cd_comments_enabled = toggled_on
+	$PanelContainer/VBoxContainer/TabContainer/Audio/Vbox/HBoxContainer/HSliderCommentsCD.editable = toggled_on
+	
