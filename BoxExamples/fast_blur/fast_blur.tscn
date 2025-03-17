@@ -1,22 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://qttwwdfj3ptb"]
+[gd_scene load_steps=8 format=3 uid="uid://qttwwdfj3ptb"]
 
-[ext_resource type="Material" uid="uid://bbal7jrquqit3" path="res://BoxExamples/fast_blur/BlurYMaterial.tres" id="1_esk3y"]
 [ext_resource type="Script" uid="uid://br0m4nvdf74u2" path="res://BoxExamples/fast_blur/FastBlur.gd" id="1_n0dc7"]
-[ext_resource type="Material" uid="uid://cv2mrmyhkpw46" path="res://BoxExamples/fast_blur/BlurXMaterial.tres" id="2_adf32"]
+[ext_resource type="Shader" uid="uid://b8vwnvmnvxfuf" path="res://BoxExamples/fast_blur/Blur.gdshader" id="2_rrl3v"]
 [ext_resource type="Texture2D" uid="uid://d15ilu8ulqyer" path="res://target/fox.png" id="3_n0dc7"]
+[ext_resource type="Texture2D" uid="uid://bxeknegkfgjpr" path="res://fox.png" id="4_adf32"]
+[ext_resource type="Texture2D" uid="uid://pa1t21f5c02h" path="res://BoxExamples/smooth_border.png" id="4_pnkd4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ykkw"]
+shader = ExtResource("2_rrl3v")
+shader_parameter/back_screen_texture = ExtResource("4_adf32")
+shader_parameter/step = Vector2(0, 1)
+shader_parameter/radius = 30.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0dc7"]
+shader = ExtResource("2_rrl3v")
+shader_parameter/back_screen_texture = ExtResource("3_n0dc7")
+shader_parameter/step = Vector2(1, 0)
+shader_parameter/radius = 30.0
 
 [node name="FastBlur" type="Node2D"]
 script = ExtResource("1_n0dc7")
 
-[node name="TextureRectY" type="TextureRect" parent="."]
-material = ExtResource("1_esk3y")
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_6ykkw")
 offset_right = 741.0
 offset_bottom = 715.0
-texture = ExtResource("3_n0dc7")
+texture = ExtResource("4_pnkd4")
 
-[node name="TextureRectX" type="TextureRect" parent="TextureRectY"]
-material = ExtResource("2_adf32")
-layout_mode = 0
+[node name="TextureRectX" type="TextureRect" parent="TextureRect"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_n0dc7")
 offset_right = 741.0
 offset_bottom = 715.0
-texture = ExtResource("3_n0dc7")
+texture = ExtResource("4_pnkd4")

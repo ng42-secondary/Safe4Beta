@@ -3,7 +3,6 @@
 [ext_resource type="Shader" uid="uid://b8vwnvmnvxfuf" path="res://BoxExamples/fast_blur/Blur.gdshader" id="1_ta5bu"]
 
 [resource]
-resource_local_to_scene = true
 shader = ExtResource("1_ta5bu")
 shader_parameter/step = Vector2(0, 1)
 shader_parameter/radius = 30.0
