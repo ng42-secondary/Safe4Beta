@@ -1,21 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6h8nriodcnir"]
+[gd_scene load_steps=6 format=3 uid="uid://c6h8nriodcnir"]
 
 [ext_resource type="PackedScene" uid="uid://ht77w61hmtbs" path="res://BoxExamples/base_censor_box.tscn" id="1_7xrja"]
-[ext_resource type="Script" uid="uid://cf0uj840h5fd3" path="res://BoxExamples/BaseScreenTexture.gd" id="2_26s4f"]
+[ext_resource type="Script" uid="uid://csn32hmmkbbgh" path="res://BoxExamples/Mosaic.gd" id="2_7xrja"]
 [ext_resource type="Shader" uid="uid://864tb610s2pv" path="res://BoxExamples/noise_filter.gdshader" id="3_7xrja"]
 [ext_resource type="Texture2D" uid="uid://dcjxtxc85r7c1" path="res://BoxExamples/smooth-circle.png" id="3_53vj3"]
-[ext_resource type="Texture2D" uid="uid://bxeknegkfgjpr" path="res://fox.png" id="4_oxolh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26s4f"]
 shader = ExtResource("3_7xrja")
-shader_parameter/screen_texture = ExtResource("4_oxolh")
+shader_parameter/back_screen_texture = ExtResource("3_53vj3")
 shader_parameter/seed = 81.0
 shader_parameter/power = 0.05
 shader_parameter/speed = 0.01
-shader_parameter/circle_size = 3.0
 
 [node name="NoiseBox" instance=ExtResource("1_7xrja")]
-script = ExtResource("2_26s4f")
+script = ExtResource("2_7xrja")
 
 [node name="TextureRect" parent="." index="0"]
 material = SubResource("ShaderMaterial_26s4f")

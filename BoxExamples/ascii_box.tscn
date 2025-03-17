@@ -1,14 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://5h68612v2j1b"]
+[gd_scene load_steps=6 format=3 uid="uid://5h68612v2j1b"]
 
 [ext_resource type="PackedScene" uid="uid://ht77w61hmtbs" path="res://BoxExamples/base_censor_box.tscn" id="1_tk48y"]
-[ext_resource type="Script" uid="uid://cf0uj840h5fd3" path="res://BoxExamples/BaseScreenTexture.gd" id="2_tk48y"]
+[ext_resource type="Script" uid="uid://csn32hmmkbbgh" path="res://BoxExamples/Mosaic.gd" id="2_tk48y"]
 [ext_resource type="Shader" uid="uid://bmidwwjs4fktj" path="res://BoxExamples/ascii_effect.gdshader" id="3_tk48y"]
-[ext_resource type="Texture2D" uid="uid://bxeknegkfgjpr" path="res://fox.png" id="4_dbggn"]
 [ext_resource type="Texture2D" uid="uid://pa1t21f5c02h" path="res://BoxExamples/smooth_border.png" id="4_h44ty"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kgq64"]
 shader = ExtResource("3_tk48y")
-shader_parameter/screen_texture = ExtResource("4_dbggn")
+shader_parameter/back_screen_texture = ExtResource("4_h44ty")
 shader_parameter/ascii_size = Vector2(10, 18)
 shader_parameter/available_columns = 10
 shader_parameter/max_columns = 16

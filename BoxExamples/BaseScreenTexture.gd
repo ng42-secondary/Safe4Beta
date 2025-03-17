@@ -14,7 +14,7 @@ func update_screen():
 		return
 	frame_count = fc
 	var current_screen_texture : ImageTexture = BetaData.screen_recorder.get_screen_texture()
-	$TextureRect.material.set_shader_parameter("screen_texture", current_screen_texture)
+	$TextureRect.material.set_shader_parameter("back_screen_texture", current_screen_texture)
 
 
 func _process(_delta):

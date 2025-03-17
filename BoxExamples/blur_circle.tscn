@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://cmk8ijlukcqnr"]
 
 [ext_resource type="PackedScene" uid="uid://ht77w61hmtbs" path="res://BoxExamples/base_censor_box.tscn" id="1_jci2m"]
-[ext_resource type="Script" uid="uid://cf0uj840h5fd3" path="res://BoxExamples/BaseScreenTexture.gd" id="2_mtlcx"]
-[ext_resource type="Shader" uid="uid://cc7jm3o6k3jko" path="res://BoxExamples/simple_blur.gdshader" id="3_jci2m"]
+[ext_resource type="Script" uid="uid://csn32hmmkbbgh" path="res://BoxExamples/Mosaic.gd" id="2_jci2m"]
+[ext_resource type="Shader" uid="uid://cc7jm3o6k3jko" path="res://BoxExamples/gaussian_blur.gdshader" id="3_jci2m"]
 [ext_resource type="Texture2D" uid="uid://dcjxtxc85r7c1" path="res://BoxExamples/smooth-circle.png" id="4_dphyo"]
 [ext_resource type="Texture2D" uid="uid://bxeknegkfgjpr" path="res://fox.png" id="4_mtlcx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mtlcx"]
 shader = ExtResource("3_jci2m")
-shader_parameter/screen_texture = ExtResource("4_mtlcx")
+shader_parameter/back_screen_texture = ExtResource("4_mtlcx")
 shader_parameter/sigma = 6.0
 
 [node name="BlurCircle" instance=ExtResource("1_jci2m")]
-script = ExtResource("2_mtlcx")
+script = ExtResource("2_jci2m")
 
 [node name="TextureRect" parent="." index="0"]
 material = SubResource("ShaderMaterial_mtlcx")

@@ -19,7 +19,7 @@ const GLITCHED_BOX = preload("res://BoxExamples/glitched_box.tscn")
 const MOSAIC_BOX = preload("res://BoxExamples/mosaic_box.tscn")
 const ASCII_BOX = preload("res://BoxExamples/ascii_box.tscn")
 const NOISE_CIRCLE = preload("res://BoxExamples/noise_circle.tscn")
-const BLUR_CIRCLE = preload("res://BoxExamples/blur_circle.tscn")
+const FAST_BLUR = preload("res://BoxExamples/fast_blur/fast_blur.tscn")
 const CUSTOM_TEXTURE_CENSOR_BOX = preload("res://BoxExamples/custom_texture_censor_box.tscn")
 const BASE_CENSOR_BOX = preload("res://BoxExamples/base_censor_box.tscn")
 const box_scn_types = [
@@ -39,9 +39,9 @@ const box_scn_types = [
 		"scn": MOSAIC_BOX
 	},
 	{
-		"display_name": "Blur (Circle)",
-		"internal": "BLUR_CIR",
-		"scn": BLUR_CIRCLE
+		"display_name": "Blur",
+		"internal": "BLUR",
+		"scn": FAST_BLUR
 	},
 	{
 		"display_name": "Noise (Circle)",

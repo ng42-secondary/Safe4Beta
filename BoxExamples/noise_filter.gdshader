@@ -6,16 +6,15 @@
 */
 shader_type canvas_item;
 
-uniform sampler2D screen_texture : repeat_disable, filter_nearest;
+uniform sampler2D back_screen_texture : repeat_disable, filter_nearest;
 
 uniform float seed = 81.0;
 uniform float power : hint_range( 0.0, 1.0 ) = 0.03;
 uniform float speed = 0.0;
-uniform float circle_size = 3.0;
 
 
 vec2 random( vec2 pos )
-{ 
+{
 	return fract(
 		sin(
 			vec2(
@@ -29,6 +28,6 @@ vec2 random( vec2 pos )
 void fragment( )
 {
 	vec2 uv = SCREEN_UV + ( random( UV + vec2( seed - TIME * speed, TIME * speed ) ) - vec2( 0.5, 0.5 ) ) * power;
-	COLOR = textureLod( screen_texture, uv, 0.0 );
+	COLOR = textureLod( back_screen_texture, uv, 0.0 );
 	COLOR.w = pow(texture(TEXTURE, UV).x, 0.6);
 }
